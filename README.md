@@ -26,3 +26,12 @@
 
 ### 普通工厂方法
 就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。
+
+```$xslt
+package com.designpattern.creative.factory.commonfactory;
+
+public interface ISender {
+
+	void send();
+}
+```
