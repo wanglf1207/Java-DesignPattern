@@ -35,3 +35,94 @@ public interface ISender {
 	void send();
 }
 ```
+
+```$xslt
+package com.designpattern.creative.factory.commonfactory;
+
+public class FTPSender implements ISender {
+
+	@Override
+	public void send() {
+		System.out.println("FTPSender send...");
+	}
+
+}
+
+```
+
+```$xslt
+package com.designpattern.creative.factory.commonfactory;
+
+public class HTTPSender implements ISender {
+
+	@Override
+	public void send() {
+		System.out.println("HTTPSender send...");
+	}
+
+}
+
+```
+```$xslt
+package com.designpattern.creative.factory.commonfactory;
+
+public class TCPSender implements ISender {
+
+	@Override
+	public void send() {
+		System.out.println("TCPSender send...");
+	}
+
+}
+
+```
+
+```$xslt
+package com.designpattern.creative.factory.commonfactory;
+
+public class SenderFactory {
+	
+	/**
+	 * @param protocolType 协议类型
+	 */
+	public ISender produce(String protocolType) {
+		
+		if(protocolType.equals("TCP")) {
+			return new TCPSender();
+		} else if(protocolType.equals("FTP")) {
+			return new FTPSender();
+		} else if(protocolType.equals("HTTP")) {
+			return new HTTPSender();
+		} else {
+			System.out.println("请输入合适的类型");
+			return null;
+		}
+	}
+}
+
+```
+
+```$xslt
+package com.designpattern.creative.factory.commonfactory;
+import org.junit.Test;
+
+
+/**
+ *
+ * @author wanglf1207
+ * 
+ */
+public class CommonFactoryPatternTest {
+
+	@Test
+	public void testSend() {
+		
+		SenderFactory senderFactory = new SenderFactory();
+		
+		senderFactory.produce("TCP").send();
+		senderFactory.produce("FTP").send();
+		senderFactory.produce("HTTP").send();
+	}
+}
+
+```
