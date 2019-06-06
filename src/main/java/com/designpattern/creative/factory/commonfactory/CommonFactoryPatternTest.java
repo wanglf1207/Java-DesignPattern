@@ -1,13 +1,16 @@
 package com.designpattern.creative.factory.commonfactory;
+import org.junit.Test;
+
 
 /**
- * 普通工厂模式测试类
+ *
  * @author wanglf1207
  * 
  */
 public class CommonFactoryPatternTest {
-	
-	public static void main(String[] args) {
+
+	@Test
+	public void testSend() {
 		
 		SenderFactory senderFactory = new SenderFactory();
 		

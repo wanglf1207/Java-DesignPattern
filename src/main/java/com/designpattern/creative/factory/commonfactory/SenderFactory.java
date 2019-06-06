@@ -3,7 +3,7 @@ package com.designpattern.creative.factory.commonfactory;
 public class SenderFactory {
 	
 	/**
-	 * @param protocolType 协议类型
+	 * @param protocolType 鍗忚绫诲瀷
 	 */
 	public ISender produce(String protocolType) {
 		
@@ -14,7 +14,7 @@ public class SenderFactory {
 		} else if(protocolType.equals("HTTP")) {
 			return new HTTPSender();
 		} else {
-			System.out.println("输入的参数类型不正确");
+			System.out.println("璇疯緭鍏ュ悎閫傜殑绫诲瀷");
 			return null;
 		}
 	}
