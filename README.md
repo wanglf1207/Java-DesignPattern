@@ -31,7 +31,7 @@
 ```$xslt
 package com.designpattern.creative.factory.commonfactory;
 
-public interface ISender {
+public interface Sender {
 
 	void send();
 }
@@ -40,7 +40,7 @@ public interface ISender {
 ```$xslt
 package com.designpattern.creative.factory.commonfactory;
 
-public class FTPSender implements ISender {
+public class FTPSender implements Sender {
 
 	@Override
 	public void send() {
@@ -54,7 +54,7 @@ public class FTPSender implements ISender {
 ```$xslt
 package com.designpattern.creative.factory.commonfactory;
 
-public class HTTPSender implements ISender {
+public class HTTPSender implements Sender {
 
 	@Override
 	public void send() {
@@ -67,7 +67,7 @@ public class HTTPSender implements ISender {
 ```$xslt
 package com.designpattern.creative.factory.commonfactory;
 
-public class TCPSender implements ISender {
+public class TCPSender implements Sender {
 
 	@Override
 	public void send() {
@@ -86,7 +86,7 @@ public class SenderFactory {
 	/**
 	 * @param protocolType 协议类型
 	 */
-	public ISender produce(String protocolType) {
+	public Sender produce(String protocolType) {
 		
 		if(protocolType.equals("TCP")) {
 			return new TCPSender();
