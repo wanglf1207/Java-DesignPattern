@@ -143,8 +143,8 @@ public class MutiFactoryMethodTest {
 
 ```
 
-### 2.3 静态工厂模式
-
+### 2.3 静态工厂方法模式
+静态工厂方法模式就是在工厂类中的方法加上static关键字修饰，不再使用对象调用方法，而是直接使用类名直接条用方法。
 ```java
 public class SenderFactory {
 	
@@ -162,10 +162,12 @@ public class SenderFactory {
 ```
 
 ```java
+import org.junit.Test;
+
 public class StaticFactoryTest {
-	
-	public static void main(String[] args) {
-		
+
+	@Test
+	public void testSend() {
 		SenderFactory.getFTPSender().send();
 		SenderFactory.getTCPSender().send();
 		SenderFactory.getHTTPSender().send();
