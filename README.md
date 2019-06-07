@@ -25,7 +25,7 @@
 就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。
 
 * 创建Sender接口，声明send()方法
-```$xslt
+```java
 package com.designpattern.creative.factory.commonfactory;
 
 public interface Sender {
@@ -34,7 +34,7 @@ public interface Sender {
 }
 ```
 
-```$xslt
+```java
 package com.designpattern.creative.factory.commonfactory;
 
 public class FTPSender implements Sender {
@@ -48,7 +48,7 @@ public class FTPSender implements Sender {
 
 ```
 
-```$xslt
+```java
 package com.designpattern.creative.factory.commonfactory;
 
 public class HTTPSender implements Sender {
@@ -61,7 +61,7 @@ public class HTTPSender implements Sender {
 }
 
 ```
-```$xslt
+```java
 package com.designpattern.creative.factory.commonfactory;
 
 public class TCPSender implements Sender {
@@ -75,7 +75,7 @@ public class TCPSender implements Sender {
 
 ```
 
-```$xslt
+```java
 package com.designpattern.creative.factory.commonfactory;
 
 public class SenderFactory {
@@ -100,7 +100,7 @@ public class SenderFactory {
 
 ```
 
-```$xslt
+```java
 package com.designpattern.creative.factory.commonfactory;
 import org.junit.Test;
 
@@ -129,7 +129,7 @@ public class CommonFactoryPatternTest {
 
 代码示例如下：
 
-```aidl
+```java
 package com.designpattern.creative.factory.multifactorymethod;
 
 public interface Sender {
@@ -139,7 +139,7 @@ public interface Sender {
 
 ```
 
-```aidl
+```java
 package com.designpattern.creative.factory.multifactorymethod;
 
 public class SenderFactory {
