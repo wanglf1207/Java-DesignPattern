@@ -1,8 +1,11 @@
 package com.designpattern.creative.factory.multifactorymethod;
 
+import org.junit.Test;
+
 public class MutiFactoryMethodTest {
-	
-	public static void main(String[] args) {
+
+	@Test
+	public void testSend() {
 		
 		SenderFactory senderFactory = new SenderFactory();
 		senderFactory.getFTPSender().send();
