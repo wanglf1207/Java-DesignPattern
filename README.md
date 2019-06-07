@@ -26,8 +26,6 @@
 
 * 创建Sender接口，声明send()方法
 ```java
-package com.designpattern.creative.factory.commonfactory;
-
 public interface Sender {
 
 	void send();
@@ -35,8 +33,6 @@ public interface Sender {
 ```
 
 ```java
-package com.designpattern.creative.factory.commonfactory;
-
 public class FTPSender implements Sender {
 
 	@Override
@@ -49,8 +45,6 @@ public class FTPSender implements Sender {
 ```
 
 ```java
-package com.designpattern.creative.factory.commonfactory;
-
 public class HTTPSender implements Sender {
 
 	@Override
@@ -62,8 +56,6 @@ public class HTTPSender implements Sender {
 
 ```
 ```java
-package com.designpattern.creative.factory.commonfactory;
-
 public class TCPSender implements Sender {
 
 	@Override
@@ -76,8 +68,6 @@ public class TCPSender implements Sender {
 ```
 
 ```java
-package com.designpattern.creative.factory.commonfactory;
-
 public class SenderFactory {
 	
 	/**
@@ -101,15 +91,8 @@ public class SenderFactory {
 ```
 
 ```java
-package com.designpattern.creative.factory.commonfactory;
 import org.junit.Test;
 
-
-/**
- *
- * @author wanglf1207
- * 
- */
 public class CommonFactoryPatternTest {
 
 	@Test
@@ -131,8 +114,6 @@ public class CommonFactoryPatternTest {
 除了工厂类和测试类与普通工厂方法模式代码不同，其他均相同。
 
 ```java
-package com.designpattern.creative.factory.multifactorymethod;
-
 public class SenderFactory {
 	public Sender getTCPSender() {
 		return new TCPSender();
@@ -146,8 +127,6 @@ public class SenderFactory {
 ```
 
 ```java
-package com.designpattern.creative.factory.multifactorymethod;
-
 import org.junit.Test;
 
 public class MutiFactoryMethodTest {
@@ -159,6 +138,37 @@ public class MutiFactoryMethodTest {
 		senderFactory.getFTPSender().send();
 		senderFactory.getTCPSender().send();
 		senderFactory.getHTTPSender().send();
+	}
+}
+
+```
+
+### 静态工厂模式
+
+```java
+public class SenderFactory {
+	
+	public static Sender getTCPSender() {
+		return new TCPSender();
+	}
+	public static Sender getHTTPSender() {
+		return new HTTPSender();
+	}
+	public static Sender getFTPSender() {
+		return new FTPSender();
+	}
+}
+
+```
+
+```java
+public class StaticFactoryTest {
+	
+	public static void main(String[] args) {
+		
+		SenderFactory.getFTPSender().send();
+		SenderFactory.getTCPSender().send();
+		SenderFactory.getHTTPSender().send();
 	}
 }
 

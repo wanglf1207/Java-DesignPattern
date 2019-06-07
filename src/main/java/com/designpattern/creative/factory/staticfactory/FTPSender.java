@@ -1,6 +1,6 @@
 package com.designpattern.creative.factory.staticfactory;
 
-public class FTPSender implements ISender {
+public class FTPSender implements Sender {
 
 	@Override
 	public void send() {

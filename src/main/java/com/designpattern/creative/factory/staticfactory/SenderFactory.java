@@ -2,13 +2,13 @@ package com.designpattern.creative.factory.staticfactory;
 
 public class SenderFactory {
 	
-	public static ISender getTCPSender() {
+	public static Sender getTCPSender() {
 		return new TCPSender();
 	}
-	public static ISender getHTTPSender() {
+	public static Sender getHTTPSender() {
 		return new HTTPSender();
 	}
-	public static ISender getFTPSender() {
+	public static Sender getFTPSender() {
 		return new FTPSender();
 	}
 }

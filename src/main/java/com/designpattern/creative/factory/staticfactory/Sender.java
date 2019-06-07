@@ -1,6 +1,6 @@
 package com.designpattern.creative.factory.staticfactory;
 
-public interface ISender {
+public interface Sender {
 
-	public void send();
+	void send();
 }
