@@ -5,7 +5,7 @@ public class SenderFactory {
 	/**
 	 * @param protocolType 协议类型
 	 */
-	public ISender produce(String protocolType) {
+	public Sender produce(String protocolType) {
 		
 		if(protocolType.equals("TCP")) {
 			return new TCPSender();

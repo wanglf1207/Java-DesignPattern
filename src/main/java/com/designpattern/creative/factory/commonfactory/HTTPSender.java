@@ -1,6 +1,6 @@
 package com.designpattern.creative.factory.commonfactory;
 
-public class HTTPSender implements ISender {
+public class HTTPSender implements Sender {
 
 	@Override
 	public void send() {

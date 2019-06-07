@@ -1,6 +1,6 @@
 package com.designpattern.creative.factory.commonfactory;
 
-public interface ISender {
+public interface Sender {
 
 	void send();
 }
