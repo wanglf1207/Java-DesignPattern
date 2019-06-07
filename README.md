@@ -128,16 +128,7 @@ public class CommonFactoryPatternTest {
 是对普通工厂方法模式的改进，在普通工厂方法模式中，如果传递的字符串出错，则不能正确创建对象，而多个工厂方法模式是提供多个工厂方法，分别创建对象。
 
 代码示例如下：
-
-```java
-package com.designpattern.creative.factory.multifactorymethod;
-
-public interface Sender {
-
-	void send();
-}
-
-```
+除了工厂类和测试类与普通工厂方法模式代码不同，其他均相同。
 
 ```java
 package com.designpattern.creative.factory.multifactorymethod;
