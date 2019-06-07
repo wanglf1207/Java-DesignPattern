@@ -1,6 +1,6 @@
 package com.designpattern.creative.factory.multifactorymethod;
 
-public class TCPSender implements ISender {
+public class TCPSender implements Sender {
 
 	@Override
 	public void send() {

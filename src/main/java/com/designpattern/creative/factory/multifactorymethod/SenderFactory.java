@@ -1,14 +1,11 @@
 package com.designpattern.creative.factory.multifactorymethod;
 
 public class SenderFactory {
-	
-	public ISender getTCPSender() {
+	public Sender getTCPSender() {
 		return new TCPSender();
 	}
-	public ISender getHTTPSender() {
+	public Sender getHTTPSender() {
 		return new HTTPSender();
 	}
-	public ISender getFTPSender() {
-		return new FTPSender();
-	}
+	public Sender getFTPSender() { return new FTPSender(); }
 }

@@ -1,6 +1,6 @@
 package com.designpattern.creative.factory.multifactorymethod;
 
-public interface ISender {
+public interface Sender {
 
-	public void send();
+	void send();
 }
