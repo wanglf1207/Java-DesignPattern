@@ -2,11 +2,8 @@ package com.designpattern.creative.abstractfactory;
 
 public class TCPSenderFactory implements Provider {
 	
-	/**
-	 * ªÒ»°sender
-	 */
 	@Override
-	public Sender getSender() {
+	public Sender produce() {
 		return new TCPSender();
 	}
 }

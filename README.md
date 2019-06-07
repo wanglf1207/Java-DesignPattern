@@ -15,7 +15,7 @@
 
 ![我是图片](./src/main/resources/images/dp-all.png)
 
-## 2. 工厂方法模式
+## 2. 工厂方法模式(Factory Method)
 工厂方法模式分为三种
 (1) 普通工厂模式
 (2) 多个工厂方法模式
@@ -174,4 +174,93 @@ public class StaticFactoryTest {
 	}
 }
 
+```
+总体来说，工厂模式适合：凡是出现了大量的产品需要创建，并且具有共同的接口时，可以通过工厂方法模式进行创建。在以上的三种模式中，第一种如果传入的字符串有误，不能正确创建对象，第三种相对于第二种，不需要实例化工厂类，所以，大多数情况下，我们会选用第三种——静态工厂方法模式。
+
+## 3. 工厂方法模式有一个问题就是，类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则，所以，从设计角度考虑，有一定的问题，如何解决？就用到抽象工厂模式，创建多个工厂类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。抽象工厂方法模式的关键是创建多个工厂类。
+以下为示例代码：
+
+定义Sender接口
+```java
+public interface Sender {
+	void send();
+}
+
+```
+
+创建HTTPSender类并使用Sender接口
+```java
+public class HTTPSender implements Sender {
+
+	@Override
+	public void send() {
+		System.out.println("HTTPSender send...");
+	}
+
+}
+```
+定义Provider接口
+```java
+public interface Provider {
+	Sender produce();
+}
+```
+创建HTTPSenderFactory类并使用Provider接口
+```java
+public class HTTPSenderFactory implements Provider {
+
+	@Override
+	public Sender produce() {
+		return new HTTPSender();
+	}
+}
+```
+创建测试类AbstractFactoryTest,编写针对HTTPSender的测试类
+```java
+import org.junit.Test;
+
+public class AbstractFactoryTest {
+	
+	@Test
+	public void testHTTPSend() {
+		Provider provider = new HTTPSenderFactory();
+		Sender httpSender = provider.produce();
+		httpSender.send();
+	}
+}
+```
+
+如果需要添加其他协议的代码支持，例如TCP协议，需要创建TCPSender类，再创建一个TCPSender对应的工厂类TCPSenderFactory类
+
+```java
+public class TCPSender implements Sender {
+
+	@Override
+	public void send() {
+		System.out.println("TCPSender send...");
+	}
+
+}
+```
+
+```java
+public class TCPSenderFactory implements Provider {
+	
+	@Override
+	public Sender produce() {
+		return new TCPSender();
+	}
+}
+```
+
+在测试类中添加testTCPSend方法
+```java
+public class AbstractFactoryTest {
+	@Test
+	public void testTCPSend() {
+		Provider provider = new TCPSenderFactory();
+		Sender tcpSender = provider.produce();
+		tcpSender.send();
+	}
+}
 ```
