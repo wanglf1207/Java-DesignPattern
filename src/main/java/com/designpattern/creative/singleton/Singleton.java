@@ -2,13 +2,13 @@ package com.designpattern.creative.singleton;
 
 public class Singleton {
 	
-	public static Singleton instance = null;
+	private static Singleton instance = null;
 	
 	private Singleton() {
 		
 	}
-	
-	public static Singleton getInstance() {
+
+	private static Singleton getInstance() {
 		if(instance == null) {
 			instance = new Singleton();
 		}
@@ -21,6 +21,5 @@ public class Singleton {
 		Singleton instance2 = Singleton.getInstance();
 		
 		System.out.println(instance1 == instance2);
-		// output:true
 	}
 }
