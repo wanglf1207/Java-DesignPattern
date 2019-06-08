@@ -68,14 +68,12 @@ public class TCPSender implements Sender {
 ```
 
 ```java
-package com.designpattern.creative.factory.commonfactory;
-
-public class SenderFactory {
+class SenderFactory {
 	
 	/**
 	 * @param protocolType 协议类型
 	 */
-	public Sender produce(String protocolType) {
+	Sender produce(String protocolType) {
 
 		switch (protocolType) {
 			case "TCP":
