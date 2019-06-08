@@ -511,3 +511,53 @@ public class ShadowClone implements Cloneable {
 ```
 
 以上的例子说明：Object对象的clone方法只能对基础数据类型进行复制，对其他类型的对象不起作用。
+
+那么我们重新复制一个新的数组该如何做呢？
+
+```java
+package com.designpattern.creative.prototype;
+
+public class DeepClone implements  Cloneable{
+
+	private int[] b; // 非基本类型
+
+	// Object的clone方法只能复制基本数据类型
+	@Override
+	public Object clone() {
+		DeepClone deepClone = null;
+		try {
+			deepClone = (DeepClone) super.clone();
+			int[] t = deepClone.getB();
+			int[] b1 = new int[t.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = t[i];
+			}
+			deepClone.setB(b1);
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return deepClone;
+	}
+
+
+
+	public int[] getB() {
+		return b;
+	}
+
+	public void setB(int[] b) {
+		this.b = b;
+	}
+
+	public static void main(String  [] args) {
+		DeepClone deepClone = new DeepClone();
+		deepClone.setB(new int[]{1000});
+
+		DeepClone deepCloneNew = (DeepClone)deepClone.clone();
+		deepCloneNew.setB(new int[]{500});
+
+		System.out.println(deepClone.getB()[0] + ":" +deepCloneNew.getB()[0]);
+	}
+}
+
+```
