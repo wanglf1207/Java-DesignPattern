@@ -405,14 +405,14 @@ package com.designpattern.creative.builder;
 
 public class Director {
 
-	private Product constructProduct(ConcreteBuilder concreteBuilder){
+    Product constructProduct(ConcreteBuilder concreteBuilder){
         concreteBuilder.buildPart1();
         concreteBuilder.buildPart2();
         concreteBuilder.buildPart3();
         return concreteBuilder.buildProduct();
     }
 	
-	private Product constructProduct1(ConcreteBuilder concreteBuilder){
+    Product constructProduct1(ConcreteBuilder concreteBuilder){
         concreteBuilder.buildPart1();
         concreteBuilder.buildPart3();
         return concreteBuilder.buildProduct();
