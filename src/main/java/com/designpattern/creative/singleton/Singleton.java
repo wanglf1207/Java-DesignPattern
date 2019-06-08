@@ -1,7 +1,8 @@
 package com.designpattern.creative.singleton;
 
 public class Singleton {
-	
+
+	// 静态变量存储在方法区中
 	private static Singleton instance = null;
 	
 	private Singleton() {

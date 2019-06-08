@@ -270,18 +270,19 @@ public class AbstractFactoryTest {
 ```
 
 ## 4. 单例模式
-
+这里暂时没有考虑多线程的情况，后面会补充进来
 ```java
 package com.designpattern.creative.singleton;
 
 public class Singleton {
-	
+
+	// 静态变量存储在方法区中
 	private static Singleton instance = null;
 	
 	private Singleton() {
 		
 	}
-	
+
 	private static Singleton getInstance() {
 		if(instance == null) {
 			instance = new Singleton();
@@ -297,5 +298,6 @@ public class Singleton {
 		System.out.println(instance1 == instance2);
 	}
 }
+
 
 ```
