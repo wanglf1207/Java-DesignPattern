@@ -4,7 +4,6 @@ public class Singleton {
 	
 	public static Singleton instance = null;
 	
-	/* 私有构造方法，防止被实例化 */  
 	private Singleton() {
 		
 	}
