@@ -439,3 +439,75 @@ public class BuilderTest {
 }
 
 ```
+
+## 6. 原型模式
+原型模式虽然是创建型的模式，但是与工场模式没有关系，从名字即可看出，该模式的思想就是将一个对象作为原型，对其进行复制、克隆，产生一个和原对象类似的新对象。本小结会通过对象的复制，进行讲解。在Java中，复制对象是通过clone()实现的，先创建一个原型类：
+很简单，一个原型类，只需要实现Cloneable接口，覆写clone方法，此处clone方法可以改成任意的名称，因为Cloneable接口是个空接口，你可以任意定义实现类的方法名，如cloneA或者cloneB，因为此处的重点是super.clone()这句话，super.clone()调用的是Object的clone()方法，而在Object类中，clone()是native的，具体怎么实现，我会在另一篇文章中，关于解读Java中本地方法的调用，此处不再深究。在这儿，我将结合对象的浅复制和深复制来说一下，首先需要了解对象深、浅复制的概念：
+以下是JDK API对Cloneable接口的说明：
+“一个类实现Cloneable接口，以指示Object.clone()方法，该方法对于该类的实例进行现场复制是合法的。 
+在不实现Cloneable接口的实例上调用对象的克隆方法导致抛出异常CloneNotSupportedException 。 
+按照惯例，实现此接口的类应使用公共方法覆盖Object.clone （受保护）。 有关覆盖此方法的详细信息，请参阅Object.clone() 。 
+注意，此接口不包含clone方法。 因此，只能通过实现该接口的事实来克隆对象是不可能的。 即使克隆方法被反射地调用，也不能保证它成功。 ”
+
+浅复制：将一个对象复制后，基本数据类型的变量都会重新创建，而引用类型，指向的还是原对象所指向的。
+深复制：将一个对象复制后，不论是基本数据类型还有引用类型，都是重新创建的。简单来说，就是深复制进行了完全彻底的复制，而浅复制不彻底。
+
+下面是一个浅复制的例子
+```java
+package com.designpattern.creative.prototype;
+
+public class ShadowClone implements Cloneable {
+
+	private int a; // 基本类型
+	private int[] b; // 非基本类型
+
+	@Override
+	public Object clone() {
+		ShadowClone sc = null;
+		try {
+			sc = (ShadowClone) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return sc;
+	}
+
+	public int getA() {
+		return a;
+	}
+
+	public void setA(int a) {
+		this.a = a;
+	}
+
+	public int[] getB() {
+		return b;
+	}
+
+	public void setB(int[] b) {
+		this.b = b;
+	}
+
+	public static void main(String[] args) {
+
+		ShadowClone c1 = new ShadowClone();
+		c1.setA(100) ;
+		c1.setB(new int[]{1000}) ;
+
+		System.out.println("克隆前c1:  a="+c1.getA()+" b="+c1.getB()[0]);
+		//克隆出对象c2,并对c2的属性A,B进行修改
+		ShadowClone c2 = (ShadowClone) c1.clone();
+		//对c2进行修改  ,c1的非基本类型也被修改了
+		c2.setA(50) ;
+		int []a = c2.getB() ;
+		a[0]=5 ;
+		c2.setB(a);
+		System.out.println("克隆后c1:  a="+c1.getA()+" b="+c1.getB()[0]);
+		System.out.println("克隆后c2:  a="+c2.getA()+ " b[0]="+c2.getB()[0]);
+	}
+
+}
+
+```
+
+以上的例子说明：Object对象的clone方法只能对基础数据类型进行复制，对其他类型的对象不起作用。

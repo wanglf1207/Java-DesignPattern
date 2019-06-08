@@ -2,8 +2,8 @@ package com.designpattern.creative.prototype;
 
 public class ShadowClone implements Cloneable {
 
-	private int a; // »ù±¾ÀàĞÍ
-	private int[] b; // ·Ç»ù±¾ÀàĞÍ
+	private int a; // åŸºæœ¬ç±»å‹
+	private int[] b; // éåŸºæœ¬ç±»å‹
 
 	@Override
 	public Object clone() {
@@ -31,24 +31,24 @@ public class ShadowClone implements Cloneable {
 	public void setB(int[] b) {
 		this.b = b;
 	}
-	
-    public static void main(String[] args) {  
-    	
-        ShadowClone c1 = new ShadowClone();  
-        //¶Ôc1¸³Öµ  
-        c1.setA(100) ;  
-        c1.setB(new int[]{1000}) ;  
-          
-        System.out.println("¿ËÂ¡Ç°c1:  a="+c1.getA()+" b="+c1.getB()[0]);  
-        //¿ËÂ¡³ö¶ÔÏóc2,²¢¶Ôc2µÄÊôĞÔA,B,C½øĞĞĞŞ¸Ä  
-        ShadowClone c2 = (ShadowClone) c1.clone();  
-        //¶Ôc2½øĞĞĞŞ¸Ä  ,c1µÄ·Ç»ù±¾ÀàĞÍÒ²±»ĞŞ¸ÄÁË
-        c2.setA(50) ;  
-        int []a = c2.getB() ;  
-        a[0]=5 ;  
-        c2.setB(a);  
-        System.out.println("¿ËÂ¡ºóc1:  a="+c1.getA()+" b="+c1.getB()[0]);  
-        System.out.println("¿ËÂ¡ºóc2:  a="+c2.getA()+ " b[0]="+c2.getB()[0]);  
-    }  
+
+	public static void main(String[] args) {
+
+		ShadowClone c1 = new ShadowClone();
+		//å¯¹c1èµ‹å€¼
+		c1.setA(100) ;
+		c1.setB(new int[]{1000}) ;
+
+		System.out.println("å…‹éš†å‰c1:  a="+c1.getA()+" b="+c1.getB()[0]);
+		//å…‹éš†å‡ºå¯¹è±¡c2,å¹¶å¯¹c2çš„å±æ€§A,B,Cè¿›è¡Œä¿®æ”¹
+		ShadowClone c2 = (ShadowClone) c1.clone();
+		//å¯¹c2è¿›è¡Œä¿®æ”¹  ,c1çš„éåŸºæœ¬ç±»å‹ä¹Ÿè¢«ä¿®æ”¹äº†
+		c2.setA(50) ;
+		int []a = c2.getB() ;
+		a[0]=5 ;
+		c2.setB(a);
+		System.out.println("å…‹éš†åc1:  a="+c1.getA()+" b="+c1.getB()[0]);
+		System.out.println("å…‹éš†åc2:  a="+c2.getA()+ " b[0]="+c2.getB()[0]);
+	}
 
 }

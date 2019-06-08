@@ -1,11 +1,11 @@
 package com.designpattern.creative.prototype;
 
 public class DeepClone {
-	
-	private int a; // »ù±¾ÀàĞÍ
-	private int[] b; // ·Ç»ù±¾ÀàĞÍ
-	
-	// ObjectµÄclone·½·¨Ö»ÄÜ¸´ÖÆ»ù±¾Êı¾İÀàĞÍ
+
+	private int a; // åŸºæœ¬ç±»å‹
+	private int[] b; // éåŸºæœ¬ç±»å‹
+
+	// Objectçš„cloneæ–¹æ³•åªèƒ½å¤åˆ¶åŸºæœ¬æ•°æ®ç±»å‹
 	@Override
 	public Object clone() {
 		DeepClone sc = null;

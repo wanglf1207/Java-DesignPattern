@@ -9,23 +9,26 @@ public class ConcreteBuilder implements Builder {
 	}
 	
 	@Override
-	public void buildPart1() {
+	public Product buildPart1() {
 		product.setPart1("创建part1");
 		System.out.println("创建part1");
+		return product;
 
 	}
 
 	@Override
-	public void buildPart2() {
+	public Product buildPart2() {
 		product.setPart2("创建part2");
 		System.out.println("创建part2");
+		return  product;
 
 	}
 
 	@Override
-	public void buildPart3() {
+	public Product buildPart3() {
 		product.setPart3("创建part3");
 		System.out.println("创建part3");
+		return product;
 	}
 
 	@Override
