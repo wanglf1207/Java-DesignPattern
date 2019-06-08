@@ -301,3 +301,141 @@ public class Singleton {
 
 
 ```
+
+## 4. 建造者模式
+工厂类模式提供的是创建单个类的模式，而建造者模式则是将各种产品集中起来进行管理，用来创建复合对象，所谓复合对象就是指某个类具有不同的属性，其实建造者模式就是前面抽象工厂模式和最后的Test结合起来得到的。我们看一下代码
+
+```java
+public interface Builder {
+	
+	 void buildPart1();
+	
+	 void buildPart2();
+	
+	 void buildPart3();
+	
+	 Product buildProduct();
+}
+```
+
+```java
+package com.designpattern.creative.builder;
+
+public class Product {
+	
+	private String part1;
+	
+	private String part2;
+	
+	private String part3;
+
+	
+	public String getPart1() {
+		return part1;
+	}
+
+	public String getPart2() {
+		return part2;
+	}
+
+	public String getPart3() {
+		return part3;
+	}
+
+	public void setPart1(String part1) {
+		this.part1 = part1;
+	}
+
+	public void setPart2(String part2) {
+		this.part2 = part2;
+	}
+
+	public void setPart3(String part3) {
+		this.part3 = part3;
+	}
+
+
+	
+}
+
+```
+
+```java
+package com.designpattern.creative.builder;
+
+public class ConcreteBuilder implements Builder {
+
+	private Product product;
+	
+	public ConcreteBuilder() {
+		product = new Product();
+	}
+	
+	@Override
+	public void buildPart1() {
+		product.setPart1("创建part1");
+		System.out.println("创建part1");
+
+	}
+
+	@Override
+	public void buildPart2() {
+		product.setPart2("创建part2");
+		System.out.println("创建part2");
+
+	}
+
+	@Override
+	public void buildPart3() {
+		product.setPart3("创建part3");
+		System.out.println("创建part3");
+	}
+
+	@Override
+	public Product buildProduct() {
+		return product;
+	}
+
+}
+
+```
+
+```java
+package com.designpattern.creative.builder;
+
+public class Director {
+
+	private Product constructProduct(ConcreteBuilder concreteBuilder){
+        concreteBuilder.buildPart1();
+        concreteBuilder.buildPart2();
+        concreteBuilder.buildPart3();
+        return concreteBuilder.buildProduct();
+    }
+	
+	private Product constructProduct1(ConcreteBuilder concreteBuilder){
+        concreteBuilder.buildPart1();
+        concreteBuilder.buildPart3();
+        return concreteBuilder.buildProduct();
+    }
+	
+	
+}
+
+```
+
+```java
+package com.designpattern.creative.builder;
+
+import org.junit.Test;
+
+public class BuilderTest {
+
+	@Test
+	public void testBuilder() {
+		//new Director().constructProduct(new ConcreteBuilder());
+		
+		new Director().constructProduct1(new ConcreteBuilder());
+	}
+}
+
+```

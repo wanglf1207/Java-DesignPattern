@@ -10,22 +10,22 @@ public class ConcreteBuilder implements Builder {
 	
 	@Override
 	public void buildPart1() {
-		product.setPart1("建造第一部分");
-		System.out.println("建造第一部分");
+		product.setPart1("鍒涘缓part1");
+		System.out.println("鍒涘缓part1");
 
 	}
 
 	@Override
 	public void buildPart2() {
-		product.setPart2("建造第二部分");
-		System.out.println("建造第二部分");
+		product.setPart2("鍒涘缓part2");
+		System.out.println("鍒涘缓part2");
 
 	}
 
 	@Override
 	public void buildPart3() {
-		product.setPart3("建造第三部分");
-		System.out.println("建造第三部分");
+		product.setPart3("鍒涘缓part3");
+		System.out.println("鍒涘缓part3");
 	}
 
 	@Override

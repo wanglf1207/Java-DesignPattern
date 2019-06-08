@@ -2,13 +2,10 @@ package com.designpattern.creative.builder;
 
 public class Product {
 	
-	// 第一部分
 	private String part1;
 	
-	// 第二部分
 	private String part2;
 	
-	// 第三部分
 	private String part3;
 
 	
