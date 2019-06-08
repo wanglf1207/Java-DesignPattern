@@ -265,3 +265,5 @@ public class AbstractFactoryTest {
 	}
 }
 ```
+
+## 单例模式
