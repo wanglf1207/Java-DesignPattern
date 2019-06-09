@@ -857,4 +857,4 @@ public class DecoratorTest {
 
 ### 3.6 组合模式
 
-### 3.2 享元模式
+### 3.7 享元模式
