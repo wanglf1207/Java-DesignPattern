@@ -1,13 +1,13 @@
 package com.designpattern.structural.adapter;
 
-public class SocketAdapter implements DBSocketInterface { // ÊµÏÖ¾É½Ó¿Ú
+public class SocketAdapter implements DBSocketInterface { // å®ç°æ—§æ¥å£
 
-	// ×éºÏĞÂ½Ó¿Ú
+	// ç»„åˆæ–°æ¥å£
 	private GBSocketInterface gbSocket;
 
 	/**
-	 * ÔÚ´´½¨ÊÊÅäÆ÷¶ÔÏóÊ±£¬±ØĞë´«ÈëÒ»¸öĞÂ½Ö¿ÚµÄÊµÏÖÀà
-	 * 
+	 * åœ¨åˆ›å»ºé€‚é…å™¨å¯¹è±¡æ—¶ï¼Œå¿…é¡»ä¼ å…¥ä¸€ä¸ªæ–°è¡—å£çš„å®ç°ç±»
+	 *
 	 * @param gbSocket
 	 */
 	public SocketAdapter(GBSocketInterface gbSocket) {
@@ -15,7 +15,7 @@ public class SocketAdapter implements DBSocketInterface { // ÊµÏÖ¾É½Ó¿Ú
 	}
 
 	/**
-	 * ½«¶Ô¾Í½Ó¿ÚµÄµ÷ÓÃÊÊÅäµ½ĞÂ½Ó¿Ú
+	 * å°†å¯¹å°±æ¥å£çš„è°ƒç”¨é€‚é…åˆ°æ–°æ¥å£
 	 */
 	@Override
 	public void powerWithTwoRound() {

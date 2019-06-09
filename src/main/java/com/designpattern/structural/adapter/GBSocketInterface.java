@@ -1,13 +1,13 @@
 package com.designpattern.structural.adapter;
 
-/** 
- * ¹ú±ê½Ó¿Ú 
- */  
-public interface GBSocketInterface {  
-      
-    /** 
-     * Õâ¸ö·½·¨µÄÃû×Ö½Ğ×ö£ºÊ¹ÓÃÈıÏî±âÍ·µÄ²å¿Ú¹©µç 
-     * ±¾ÈËÓ¢Óï¾ÍÕâ¸öË®Æ½£¬´ÓÓĞµÀ´Êµä²éµÃ£¬ flatÒâË¼ºÃÏñÊÇ£º ±âµÄ 
-     */  
-    void powerWithThreeFlat();  
+/**
+ * å›½æ ‡æ¥å£
+ */
+public interface GBSocketInterface {
+
+    /**
+     * è¿™ä¸ªæ–¹æ³•çš„åå­—å«åšï¼šä½¿ç”¨ä¸‰é¡¹æ‰å¤´çš„æ’å£ä¾›ç”µ
+     * æœ¬äººè‹±è¯­å°±è¿™ä¸ªæ°´å¹³ï¼Œä»æœ‰é“è¯å…¸æŸ¥å¾—ï¼Œ flatæ„æ€å¥½åƒæ˜¯ï¼š æ‰çš„
+     */
+    void powerWithThreeFlat();
 }  

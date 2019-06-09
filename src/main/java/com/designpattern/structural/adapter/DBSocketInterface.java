@@ -1,8 +1,8 @@
 package com.designpattern.structural.adapter;
 
 public interface DBSocketInterface {
-	/** 
-     * Õâ¸ö·½·¨µÄÃû×Ö½Ğ×ö£ºÊ¹ÓÃÁ½ÏîÔ²Í·µÄ²å¿Ú¹©µç 
-     */  
-    void powerWithTwoRound();  
+    /**
+     * è¿™ä¸ªæ–¹æ³•çš„åå­—å«åšï¼šä½¿ç”¨ä¸¤é¡¹åœ†å¤´çš„æ’å£ä¾›ç”µ
+     */
+    void powerWithTwoRound();
 }

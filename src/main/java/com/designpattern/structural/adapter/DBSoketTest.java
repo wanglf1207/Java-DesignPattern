@@ -1,16 +1,16 @@
 package com.designpattern.structural.adapter;
 
-public class DBSoketTest {  
-	  
-    public static void main(String[] args) {  
-          
-        //³õÊ¼»¯Ò»¸öµÂ¹ú²å×ù¶ÔÏó£¬ ÓÃÒ»¸öµÂ±ê½Ó¿ÚÒıÓÃËü  
-        DBSocketInterface dbSoket = new DBSocket();  
-          
-        //´´½¨Ò»¸öÂÃ¹İ¶ÔÏó  
-        Hotel hotel = new Hotel(dbSoket);  
-          
-        //ÔÚÂÃ¹İÖĞ¸øÊÖ»ú³äµç  
-        hotel.charge();  
-    }  
+public class DBSoketTest {
+
+    public static void main(String[] args) {
+
+        //åˆå§‹åŒ–ä¸€ä¸ªå¾·å›½æ’åº§å¯¹è±¡ï¼Œ ç”¨ä¸€ä¸ªå¾·æ ‡æ¥å£å¼•ç”¨å®ƒ
+        DBSocketInterface dbSoket = new DBSocket();
+
+        //åˆ›å»ºä¸€ä¸ªæ—…é¦†å¯¹è±¡
+        Hotel hotel = new Hotel(dbSoket);
+
+        //åœ¨æ—…é¦†ä¸­ç»™æ‰‹æœºå……ç”µ
+        hotel.charge();
+    }
 }  

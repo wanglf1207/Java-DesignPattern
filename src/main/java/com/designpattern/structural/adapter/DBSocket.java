@@ -1,10 +1,10 @@
 package com.designpattern.structural.adapter;
-/** 
- * µÂ¹ú²å×ù 
- */  
-public class DBSocket implements DBSocketInterface{  
-      
-    public void powerWithTwoRound(){  
-        System.out.println("Ê¹ÓÃÁ½ÏîÔ²Í·µÄ²å¿×¹©µç");  
-    }  
+/**
+ * å¾·å›½æ’åº§
+ */
+public class DBSocket implements DBSocketInterface{
+
+    public void powerWithTwoRound(){
+        System.out.println("ä½¿ç”¨ä¸¤é¡¹åœ†å¤´çš„æ’å­”ä¾›ç”µ");
+    }
 }  

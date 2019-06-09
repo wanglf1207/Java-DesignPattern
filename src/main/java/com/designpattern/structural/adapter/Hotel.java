@@ -1,29 +1,29 @@
 package com.designpattern.structural.adapter;
 
-/** 
- * µÂ¹ú±ö¹İ 
- */  
-public class Hotel {  
-  
-    //ÂÃ¹İÖĞÓĞÒ»¸öµÂ±êµÄ²å¿Ú  
-    private DBSocketInterface dbSocket;  
-      
-    public Hotel(){}  
-      
-    public Hotel(DBSocketInterface dbSocket) {  
-        this.dbSocket = dbSocket;  
-    }  
-  
-    public void setSocket (DBSocketInterface dbSocket){  
-        this.dbSocket = dbSocket;  
-    }  
-  
-    //ÂÃ¹İÖĞÓĞÒ»¸ö³äµçµÄ¹¦ÄÜ  
-    public void charge(){  
-          
-        //Ê¹ÓÃµÂ±ê²å¿Ú³äµç 
-    	// ÊÊÅäÆ÷Ä£Ê½¹Ø¼üÔÚÕâÀï£¬ÊÊÅäÆ÷Ä£Ê½ÖĞµÄdbSocketÒÑ¾­ÊÇSoketAdapterµÄÊµÀı¶ÔÏóÁË¡£
-        dbSocket.powerWithTwoRound();  
-    }  
+/**
+ * å¾·å›½å®¾é¦†
+ */
+public class Hotel {
+
+    //æ—…é¦†ä¸­æœ‰ä¸€ä¸ªå¾·æ ‡çš„æ’å£
+    private DBSocketInterface dbSocket;
+
+    public Hotel(){}
+
+    public Hotel(DBSocketInterface dbSocket) {
+        this.dbSocket = dbSocket;
+    }
+
+    public void setSocket (DBSocketInterface dbSocket){
+        this.dbSocket = dbSocket;
+    }
+
+    //æ—…é¦†ä¸­æœ‰ä¸€ä¸ªå……ç”µçš„åŠŸèƒ½
+    public void charge(){
+
+        //ä½¿ç”¨å¾·æ ‡æ’å£å……ç”µ
+        // é€‚é…å™¨æ¨¡å¼å…³é”®åœ¨è¿™é‡Œï¼Œé€‚é…å™¨æ¨¡å¼ä¸­çš„dbSocketå·²ç»æ˜¯SoketAdapterçš„å®ä¾‹å¯¹è±¡äº†ã€‚
+        dbSocket.powerWithTwoRound();
+    }
 }  
 

@@ -1,12 +1,12 @@
 package com.designpattern.structural.adapter;
 
-/** 
- * 中国插座 
- */  
-public class GBSocket implements GBSocketInterface{  
-      
-    @Override  
-    public void powerWithThreeFlat() {  
-        System.out.println("使用三项扁头插孔供电");  
-    }  
+/**
+ * 涓浗鎻掑骇
+ */
+public class GBSocket implements GBSocketInterface{
+
+    @Override
+    public void powerWithThreeFlat() {
+        System.out.println("浣跨敤涓夐」鎵佸ご鎻掑瓟渚涚數");
+    }
 }  
