@@ -1,10 +1,12 @@
 package com.designpattern.structural.facade;
 
+import org.junit.Test;
+
 public class FacadeTest {
-	public static void main(String[] args) {
+	@Test
+	public void testFacade() {
 		Computer computer = new Computer();
 		computer.startup();
 		computer.shutdown();
 	}
-
 }

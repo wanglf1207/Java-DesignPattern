@@ -11,14 +11,14 @@ public class Proxy implements Sourceable {
 	public void method() {
 		before();
 		source.method();
-		afrer();
+		after();
 	}
 	
 	public void before() {
 		System.out.println("Proxy before....");
 	}
 	
-	public void afrer() {
+	public void after() {
 		System.out.println("Proxy after....");
 	}
 

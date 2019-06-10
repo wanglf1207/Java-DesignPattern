@@ -851,8 +851,182 @@ public class DecoratorTest {
 ```
 ### 3.3 代理模式
 
+```java
+package com.designpattern.structural.proxy.demo;
+
+public interface Sourceable {
+	
+	void method();
+}
+
+```
+
+```java
+package com.designpattern.structural.proxy.demo;
+
+public class Source implements Sourceable{
+
+	@Override
+	public void method() {
+		System.out.println("Source method...");
+	}
+
+}
+
+```
+```java
+package com.designpattern.structural.proxy.demo;
+
+public class Proxy implements Sourceable {
+
+	private Source source;
+	
+	public Proxy() {
+		this.source = new Source();
+	}
+	@Override
+	public void method() {
+		before();
+		source.method();
+		after();
+	}
+	
+	public void before() {
+		System.out.println("Proxy before....");
+	}
+	
+	public void after() {
+		System.out.println("Proxy after....");
+	}
+
+}
+
+```
+
+```java
+package com.designpattern.structural.proxy.demo;
+
+public class ProxyTest {
+
+	public static void main(String[] args) {
+
+		// 不适用代理
+		Source s = new Source();
+		s.method();
+
+		// 使用代理，代理能帮助我们做更多的事
+		Proxy p = new Proxy();
+		p.method();
+	}
+}
+
+```
 ### 3.4 外观模式
 
+外观模式是为了解决类与类之家的依赖关系的，像spring一样，可以将类和类之间的关系配置到配置文件中，而外观模式就是将他们的关系放在一个Facade类中，降低了类类之间的耦合度，该模式中没有涉及到接口，看下类图：（我们以一个计算机的启动过程为例）
+
+我们先看下实现类：
+
+```java
+package com.designpattern.structural.facade;
+
+public class CPU {
+
+	public void startup() {
+		System.out.println("cpu startup!");
+	}
+
+	public void shutdown() {
+		System.out.println("cpu shutdown!");
+	}
+}
+
+```
+```java
+package com.designpattern.structural.facade;
+
+public class Disk {  
+      
+    public void startup(){  
+        System.out.println("disk startup!");  
+    }  
+      
+    public void shutdown(){  
+        System.out.println("disk shutdown!");  
+    }  
+}  
+
+
+```
+
+```java
+package com.designpattern.structural.facade;
+
+public class Memory {  
+      
+    public void startup(){  
+        System.out.println("memory startup!");  
+    }  
+      
+    public void shutdown(){  
+        System.out.println("memory shutdown!");  
+    }  
+}  
+
+
+```
+
+```java
+package com.designpattern.structural.facade;
+
+public class Computer {  
+    private CPU cpu;  
+    private Memory memory;  
+    private Disk disk;  
+      
+    public Computer(){  
+        cpu = new CPU();  
+        memory = new Memory();  
+        disk = new Disk();  
+    }  
+      
+    public void startup(){  
+        System.out.println("start the computer!");  
+        cpu.startup();  
+        memory.startup();  
+        disk.startup();  
+        System.out.println("start computer finished!");  
+    }  
+      
+    public void shutdown(){  
+        System.out.println("begin to close the computer!");  
+        cpu.shutdown();  
+        memory.shutdown();  
+        disk.shutdown();  
+        System.out.println("computer closed!");  
+    }  
+}  
+
+
+```
+
+```java
+package com.designpattern.structural.facade;
+
+import org.junit.Test;
+
+public class FacadeTest {
+	@Test
+	public void testFacade() {
+		Computer computer = new Computer();
+		computer.startup();
+		computer.shutdown();
+	}
+}
+
+```
+
+如果我们没有Computer类，那么，CPU、Memory、Disk他们之间将会相互持有实例，产生关系，这样会造成严重的依赖，修改一个类，可能会带来其他类的修改，这不是我们想要看到的，有了Computer类，他们之间的关系被放在了Computer类里，这样就起到了解耦的作用，这，就是外观模式！
 ### 3.5 桥接模式
 
 ### 3.6 组合模式

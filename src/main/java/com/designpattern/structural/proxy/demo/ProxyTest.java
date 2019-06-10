@@ -1,14 +1,14 @@
 package com.designpattern.structural.proxy.demo;
 
 public class ProxyTest {
-	
+
 	public static void main(String[] args) {
-		
-		// ²»ÊÊÓÃ´úÀí
+
+		// ä¸é€‚ç”¨ä»£ç†
 		Source s = new Source();
 		s.method();
-		
-		// Ê¹ÓÃ´úÀí£¬´úÀíÄÜ°ïÖúÎÒÃÇ×ö¸ü¶àµÄÊÂ
+
+		// ä½¿ç”¨ä»£ç†ï¼Œä»£ç†èƒ½å¸®åŠ©æˆ‘ä»¬åšæ›´å¤šçš„äº‹
 		Proxy p = new Proxy();
 		p.method();
 	}
