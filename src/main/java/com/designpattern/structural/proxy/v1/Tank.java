@@ -3,27 +3,27 @@ package com.designpattern.structural.proxy.v1;
 import java.util.Random;
 
 /**
- * ¼ÆËãÕâ¸ö·½·¨µÄÔËĞĞÊ±¼ä£¬·Ö±ğ¼ÆËã¿ªÊ¼¡¢½áÊøÊ±¼ä£¬Ïà¼õ¡£
+ * è®¡ç®—è¿™ä¸ªæ–¹æ³•çš„è¿è¡Œæ—¶é—´ï¼Œåˆ†åˆ«è®¡ç®—å¼€å§‹ã€ç»“æŸæ—¶é—´ï¼Œç›¸å‡ã€‚
  * @author wanglf1207
  */
 public class Tank implements IMoveable {
-	
+
 	@Override
 	public void move() {
 		long startTime = System.currentTimeMillis();
 		System.out.println("tank moving...");
 		/**
-		 * Ë¯ÃßÒ»¶ÎÊ±¼ä±íÊ¾TankÕıÔÚÒÆ¶¯ÖĞ¡£
-		 * nextInt,·µ»ØÏÂÒ»¸öÎ±Ëæ»úÊı£¬
-		 * ËüÊÇ´ËËæ»úÊıÉú³ÉÆ÷µÄĞòÁĞÖĞ¾ùÔÈ·Ö²¼µÄ int Öµ¡£
+		 * ç¡çœ ä¸€æ®µæ—¶é—´è¡¨ç¤ºTankæ­£åœ¨ç§»åŠ¨ä¸­ã€‚
+		 * nextInt,è¿”å›ä¸‹ä¸€ä¸ªä¼ªéšæœºæ•°ï¼Œ
+		 * å®ƒæ˜¯æ­¤éšæœºæ•°ç”Ÿæˆå™¨çš„åºåˆ—ä¸­å‡åŒ€åˆ†å¸ƒçš„ int å€¼ã€‚
 		 */
 		try {
-			//²úÉú10ÃëÒÔÄÚµÄËæ»úÊı
+			//äº§ç”Ÿ10ç§’ä»¥å†…çš„éšæœºæ•°
 			Thread.sleep(new Random().nextInt(10000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		long endTime = System.currentTimeMillis();
-		System.out.println("·½·¨ÔËĞĞµÄÊ±¼ä:"+(endTime-startTime));
+		System.out.println("æ–¹æ³•è¿è¡Œçš„æ—¶é—´:"+(endTime-startTime));
 	}
 }

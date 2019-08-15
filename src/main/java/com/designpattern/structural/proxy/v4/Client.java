@@ -1,11 +1,11 @@
 package com.designpattern.structural.proxy.v4;
-//²âÊÔÀà£¬Ä£ºıTankÀàµÄ¿Í»§¶Ë
+//æµ‹è¯•ç±»ï¼Œæ¨¡ç³ŠTankç±»çš„å®¢æˆ·ç«¯
 public class Client {
 	public static void main(String[] args) throws Exception {
 		Tank t = new Tank();
-		
+
 		IMoveable m = (IMoveable)Proxy.newProxyInstance(IMoveable.class);
-		
+
 		m.move();
 	}
 }

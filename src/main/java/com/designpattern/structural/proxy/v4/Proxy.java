@@ -12,65 +12,67 @@ import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 import javax.tools.JavaCompiler.CompilationTask;
 
-// ÓÃÀ´²úÉú´úÀíµÄÀà
-// °ÑÊ±¼ä´úÀíÒÔ×Ö·û´®µÄĞÎÊ½Õ¹ÏÖ
-// °Ñ¶¯Ì¬´úÀí±àÒë³É¹¦¼¸ÖÖ·½Ê½£ºJDK×Ô´øAPI¡¢CGLib¡¢ASM
+// ç”¨æ¥äº§ç”Ÿä»£ç†çš„ç±»
+// æŠŠæ—¶é—´ä»£ç†ä»¥å­—ç¬¦ä¸²çš„å½¢å¼å±•ç°
+// æŠŠåŠ¨æ€ä»£ç†ç¼–è¯‘æˆåŠŸå‡ ç§æ–¹å¼ï¼šJDKè‡ªå¸¦APIã€CGLibã€ASM
 public class Proxy {
 	public static Object newProxyInstance(Class<?> infce) throws Exception {
-		// ¶¨Òå»Ø³µ»»ĞĞ×Ö·û£¬±£Ö¤Éú³ÉµÄÎÄ¼ş¸ñÊ½
+		// å®šä¹‰å›è½¦æ¢è¡Œå­—ç¬¦ï¼Œä¿è¯ç”Ÿæˆçš„æ–‡ä»¶æ ¼å¼
 		String rt = "\r\n";
-		// °ÑÊ±¼ä´úÀí°ü×°³É×Ö·û´®
-		String src = 
-			"package com.proxy;" + rt + 
-			"public class TankTimeProxy implements IMoveable {" + rt +
-			"	IMoveable t;" + rt +
-				
-			"	public TankTimeProxy(IMoveable t) {" + rt +
-			"		super();" + rt +
-			"		this.t = t;" + rt +
-			"	}" + rt +
-				
-			"	@Override" + rt +
-			"	public void move() {" + rt +
-			"		long startTime = System.currentTimeMillis();" + rt +
-			"		t.move();" + rt +
-			"		long endTime = System.currentTimeMillis();" + rt +
-			"		System.out.println(\"·½·¨ÔËĞĞµÄÊ±¼ä:\"+(endTime-startTime));" + rt +
-			"	}" + rt +
-			"}";
-		
-		String fileName = System.getProperty("user.dir") + 
-							"/src/com/proxy/TankTimeProxy.java";
+		// æŠŠæ—¶é—´ä»£ç†åŒ…è£…æˆå­—ç¬¦ä¸²
+		String src =
+				"package com.designpattern.structural.proxy.v4;" + rt +
+						"public class TankTimeProxy implements IMoveable {" + rt +
+						"	IMoveable t;" + rt +
+
+						"	public TankTimeProxy(IMoveable t) {" + rt +
+						"		super();" + rt +
+						"		this.t = t;" + rt +
+						"	}" + rt +
+
+						"	@Override" + rt +
+						"	public void move() {" + rt +
+						"		long startTime = System.currentTimeMillis();" + rt +
+						"		t.move();" + rt +
+						"		long endTime = System.currentTimeMillis();" + rt +
+						"		System.out.println(\"æ–¹æ³•è¿è¡Œçš„æ—¶é—´:\"+(endTime-startTime));" + rt +
+						"	}" + rt +
+						"}";
+
+		String fileName = System.getProperty("user.dir") +
+				//"/src/com/proxy/TankTimeProxy.java";
+			"src/main/java/com/designpattern/structural/proxy/v4/TankTimeProxy.java";
+		//com.designpattern.structural.proxy.v4
 		System.out.println(fileName);
-		
+
 		File file = new File(fileName);
 		FileWriter fw = new FileWriter(file);
 		fw.write(src);
 		fw.flush();
 		fw.close();
-		// ÄÃµ½JAVAÏµÍ³Ä¬ÈÏµÄ±àÒëÆ÷£¬ÆäÊµ¾ÍÊÇjavac
+		// æ‹¿åˆ°JAVAç³»ç»Ÿé»˜è®¤çš„ç¼–è¯‘å™¨ï¼Œå…¶å®å°±æ˜¯javac
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		System.out.println(compiler.getClass().getName());
-		
-		// param: 1.Õï¶ÏµÄ¼àÌıÆ÷,2.¹ú¼Ê»¯Ïà¹ØµÄ£¬3.±àÂë    ¶¼Ö¸¶¨null±íÄ¬ÈÏµÄ
+
+		// param: 1.è¯Šæ–­çš„ç›‘å¬å™¨,2.å›½é™…åŒ–ç›¸å…³çš„ï¼Œ3.ç¼–ç     éƒ½æŒ‡å®šnullè¡¨é»˜è®¤çš„
 		StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
-		// Í¨¹ıfileMgrÕÒµ½±»±àÒëµÄÎÄ¼ş
+		// é€šè¿‡fileMgræ‰¾åˆ°è¢«ç¼–è¯‘çš„æ–‡ä»¶
 		Iterable<?> compilationUnits = fileManager.getJavaFileObjects(fileName);
-		// ÄÃµ½±àÒëÈÎÎñ
-		// out:±àÒëµ½ÄÄ  diagnosticListener:¼àÌıÆ÷ options:javac±àÒëµÄÊ±ºòÖ¸¶¨µÄ²ÎÊı classes£ºÓÃµ½ÄÄĞ©classÎÄ¼ş
+		// æ‹¿åˆ°ç¼–è¯‘ä»»åŠ¡
+		// out:ç¼–è¯‘åˆ°å“ª  diagnosticListener:ç›‘å¬å™¨ options:javacç¼–è¯‘çš„æ—¶å€™æŒ‡å®šçš„å‚æ•° classesï¼šç”¨åˆ°å“ªäº›classæ–‡ä»¶
 		CompilationTask t = compiler.getTask(null, fileManager, null, null, null, (Iterable<? extends JavaFileObject>) compilationUnits);
-		// µ÷ÓÃÈÎÎñ£¬±àÒë
+		// è°ƒç”¨ä»»åŠ¡ï¼Œç¼–è¯‘
 		t.call();
 		fileManager.close();
-		
+
 		// load into memory and create new instance
-		
+
 		URL[] urls = new URL[]{new URL("file:/" + System.getProperty("user.dir")  + "/src")};
 		URLClassLoader ul = new URLClassLoader(urls);
 		String name = "com.proxy.TankTimeProxy";
 		Class<?> c = ul.loadClass(name);
 		System.out.println(c);
-		// ÄÃµ½¹¹Ôì·½·¨
+		// æ‹¿åˆ°æ„é€ æ–¹æ³•
 		Constructor<?> construcrot = c.getConstructor(IMoveable.class);
 		IMoveable m = (IMoveable) construcrot.newInstance(new Tank());
 		//m.move();

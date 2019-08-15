@@ -1,5 +1,5 @@
 package com.designpattern.structural.proxy.v2;
-//²âÊÔÀà£¬Ä£ÄâTankÀàµÄ¿Í»§¶Ë
+//æµ‹è¯•ç±»ï¼Œæ¨¡æ‹ŸTankç±»çš„å®¢æˆ·ç«¯
 public class Client {
 	public static void main(String[] args) {
 		IMoveable m = new Tank2();

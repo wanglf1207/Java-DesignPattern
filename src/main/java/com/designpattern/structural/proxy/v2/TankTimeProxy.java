@@ -1,7 +1,10 @@
 package com.designpattern.structural.proxy.v2;
-//Ò»¸öÀàÖĞÓĞÁíÒ»ÀàµÄ¶ÔÏó£¬½Ğ¾ÛºÏ
+/**
+ * ä¸€ä¸ªç±»ä¸­æœ‰å¦ä¸€ç±»çš„å¯¹è±¡ï¼Œå«èšåˆ
+ */
 public class TankTimeProxy implements IMoveable {
-	//Tank3Ïàµ±ÓÚTankµÄÒ»¸ö´úÀí
+
+	//Tank3ç›¸å½“äºTankçš„ä¸€ä¸ªä»£ç†
 	public TankTimeProxy(Tank t) {
 		super();
 		this.t = t;
@@ -12,6 +15,6 @@ public class TankTimeProxy implements IMoveable {
 		long startTime = System.currentTimeMillis();
 		t.move();
 		long endTime = System.currentTimeMillis();
-		System.out.println("·½·¨ÔËĞĞµÄÊ±¼ä:"+(endTime-startTime));
+		System.out.println("æ–¹æ³•è¿è¡Œçš„æ—¶é—´:"+(endTime-startTime));
 	}
 }

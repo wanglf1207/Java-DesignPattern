@@ -1,6 +1,6 @@
 package com.designpattern.structural.proxy.v1;
 /**
- * ²âÊÔÀà£¬Ä£ÄâTankÀàµÄ¿Í»§¶Ë
+ * æµ‹è¯•ç±»ï¼Œæ¨¡æ‹ŸTankç±»çš„å®¢æˆ·ç«¯
  * @author wanglf1207
  */
 public class Client {

@@ -3,18 +3,18 @@ package com.designpattern.structural.proxy.v3;
 import java.util.Random;
 
 public class Tank implements IMoveable {
-	
+
 	/**
-	 * ¼ÆËãÕâ¸ö·½·¨µÄÔËĞĞÊ±¼ä£¬·Ö±ğ¼ÆËã¿ªÊ¼½áÊøÊ±¼ä£¬Ïà¼õ¡£
+	 * è®¡ç®—è¿™ä¸ªæ–¹æ³•çš„è¿è¡Œæ—¶é—´ï¼Œåˆ†åˆ«è®¡ç®—å¼€å§‹ç»“æŸæ—¶é—´ï¼Œç›¸å‡ã€‚
 	 */
 	@Override
 	public void move() {
-		
+
 		System.out.println("tank moving...");
 		/**
-		 * Ë¯ÃßÒ»¶ÎÊ±¼ä±íÊ¾TankÕıÔÚÒÆ¶¯ÖĞ¡£
-		 * nextInt,·µ»ØÏÂÒ»¸öÎ±Ëæ»úÊı£¬
-		 * ËüÊÇ´ËËæ»úÊıÉú³ÉÆ÷µÄĞòÁĞÖĞ¾ùÔÈ·Ö²¼µÄ int Öµ¡£
+		 * ç¡çœ ä¸€æ®µæ—¶é—´è¡¨ç¤ºTankæ­£åœ¨ç§»åŠ¨ä¸­ã€‚
+		 * nextInt,è¿”å›ä¸‹ä¸€ä¸ªä¼ªéšæœºæ•°ï¼Œ
+		 * å®ƒæ˜¯æ­¤éšæœºæ•°ç”Ÿæˆå™¨çš„åºåˆ—ä¸­å‡åŒ€åˆ†å¸ƒçš„ int å€¼ã€‚
 		 */
 		try {
 			Thread.sleep(new Random().nextInt(10000));

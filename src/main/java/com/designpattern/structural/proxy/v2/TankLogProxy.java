@@ -1,17 +1,17 @@
 package com.designpattern.structural.proxy.v2;
-//ÈÕÖ¾µÄ´úÀíÀà
+//æ—¥å¿—çš„ä»£ç†ç±»
 public class TankLogProxy implements IMoveable {
 	Tank t;
-	//TankLogProxyÏàµ±ÓÚTankµÄÒ»¸ö´úÀí
+	//TankLogProxyç›¸å½“äºTankçš„ä¸€ä¸ªä»£ç†
 	public TankLogProxy(Tank t) {
 		super();
 		this.t = t;
 	}
-	
+
 	@Override
 	public void move() {
 		System.out.println("Tank start.....");
 		t.move();
-		System.out.println("Tank end.......");	
+		System.out.println("Tank end.......");
 	}
 }
