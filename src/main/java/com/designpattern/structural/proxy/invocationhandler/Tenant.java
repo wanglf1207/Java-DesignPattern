@@ -1,13 +1,9 @@
 package com.designpattern.structural.proxy.invocationhandler;
 
-public class RealSubject implements Subject {
+public class Tenant implements Subject {
     @Override
     public void rent() {
         System.out.println("I want to rent my house");
     }
 
-    @Override
-    public void hello(String str) {
-        System.out.println("hello  " + str);
-    }
 }

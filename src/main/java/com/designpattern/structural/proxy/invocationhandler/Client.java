@@ -9,10 +9,10 @@ public class Client {
     public static void main(String [] args) {
 
         // 要代理的真实对象
-        Subject realSubject = new RealSubject();
+        Subject tenant = new Tenant();
 
         // 我们要代理那个真实对象，就将那个对象传进去，最后是通过该真实对象调用其方法的
-        InvocationHandler handler = new DynamicProxy(realSubject);
+        InvocationHandler handler = new LogHandler(tenant);
 
         /*
          * 通过Proxy的newProxyInstance方法来创建我们的代理对象，我们来看看其三个参数
@@ -20,11 +20,10 @@ public class Client {
          * 第二个参数realSubject.getClass().getInterfaces()，我们这里为代理对象提供的接口是真实对象所实行的接口，表示我要代理的是该真实对象，这样我就能调用这组接口中的方法了
          * 第三个参数handler， 我们这里将这个代理对象关联到了上方的 InvocationHandler 这个对象上
          */
-       Subject subject = (Subject) Proxy.newProxyInstance(handler.getClass().getClassLoader(), realSubject
+       Subject proxyInstance = (Subject) Proxy.newProxyInstance(handler.getClass().getClassLoader(), tenant
                 .getClass().getInterfaces(), handler);
-        System.out.println(subject.getClass().getName());
-        subject.rent();
-        subject.hello("world");
+        System.out.println(proxyInstance.getClass().getName());
+        proxyInstance.rent();
 
 
     }
