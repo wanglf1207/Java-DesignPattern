@@ -270,6 +270,499 @@ public class AbstractFactoryTest {
 }
 ```
 
+
+下面将马士兵老师当时讲工厂模式的例子回忆并记录
+
+创建一个Car类，里面写run方法
+```java
+public class Car {
+	public void run() {
+		System.out.println("冒着烟奔跑中.....");
+	}
+}
+
+
+```
+
+在使用Car类创建对象的时候，在不同的地方调用都会创建一个新的对象，如果我们想每次使用的是同一个car对象怎么办？
+```java
+public class Car {
+	
+	private static Car car = new Car();
+	private Car() {}
+
+	public static Car getInstance(){
+		return car;
+	}
+	public void run() {
+		System.out.println("冒着烟奔跑中.....");
+	}
+}
+```
+
+对应测试类如下：
+```java
+public class Test {
+	public static void main(String[] args) {
+		Car.getInstance().run();
+	}
+}
+```
+
+上面的代码包含了静态工厂方法，自始至终只有一个Car对象,所以也叫单例。如果想给交给工具添加类型怎么办?
+```java
+public class Car {
+	// 相对于单例来讲，这叫多例！
+	private String carName;
+	private static List<Car> cars = new ArrayList<Car>();
+	
+	private Car() {	
+	}
+	public String getCarName() {
+		return carName;
+	}
+	public void setCarName(String carName) {
+		this.carName = carName;
+	}
+	private Car(String carName) {
+		super();
+		this.carName=carName;
+	}
+	// getInstance()静态工厂方法
+	// 返回多个Car对象，这叫多例
+	public static List<Car> getInstance(){
+		cars.add(new Car("A6L"));
+		cars.add(new Car("benz"));
+		return cars;
+	}
+	public void run() {
+		System.out.println("冒着烟奔跑中.....");
+	}
+	@Override
+	public String toString() {
+		return "Car [carName=" + carName + "]";
+	}
+}
+```
+
+```java
+public class Test {
+	public static void main(String[] args) {
+		Iterator<Car> i = Car.getInstance().iterator();
+		while(i.hasNext()) {
+			System.out.println(i.next().toString());
+		}
+	}
+}
+```
+这个项目包含两个模式，一个是工厂，一个是多例，注意体会！如果想任意定制交通工具的类型及生产过程，怎么办？
+
+定义接口
+```java
+
+public interface IMoveable {
+	void run();
+}
+
+```
+
+创建Car类并使用Imoveable接口
+```java
+public class Car implements IMoveable{
+	// 相对于单例来讲，这叫多例！
+	private String carName;
+	private static List<Car> cars = new ArrayList<Car>();
+	
+	public Car() {	
+	}
+	public String getCarName() {
+		return carName;
+	}
+	public void setCarName(String carName) {
+		this.carName = carName;
+	}
+	private Car(String carName) {
+		super();
+		this.carName=carName;
+	}
+	// getInstance()静态工厂方法
+	// 返回多个Car对象，这叫多例
+	public static List<Car> getInstance(){
+		cars.add(new Car("A6L"));
+		cars.add(new Car("benz"));
+		return cars;
+	}
+	@Override
+	public void run() {
+		System.out.println("冒着烟奔跑中.....");
+	}
+	@Override
+	public String toString() {
+		return "Car [carName=" + carName + "]";
+	}
+}
+```
+
+创建一个生产Car的工厂类CarFactory
+```java
+public class CarFactory {
+	public Car createCar() {
+		return new Car();
+	}
+}
+```
+
+创建飞机Plan类并使用IMoveable接口
+```java
+public class Plane implements IMoveable {
+
+	@Override
+	public void run() {
+		System.out.println("闪着翅膀前进中...");
+	}
+}
+```
+
+创建生产飞机的工厂PlaneFactory
+```java
+public class PlaneFactory {
+	public Plane cratePlane() {
+		return new Plane();
+	}
+}
+
+```
+测试类如下：
+```java
+public class Test {
+	public static void main(String[] args) {
+		/*Iterator<Car> i = Car.getInstance().iterator();
+		while(i.hasNext()) {
+			System.out.println(i.next().toString());
+		}*/
+		/*IMoveable m = new Plane();
+		m.run();*/
+		CarFactory cf = new CarFactory();
+		IMoveable m = cf.createCar();
+		System.out.println(m);
+	}
+}
+```
+定制了交通工具的类型及生产过程，但是在测试类也发现还是不方便，
+下个项目定义了生产交通工具的工厂！
+
+```java
+public abstract class VehicleFactory {
+	abstract IMoveable create();
+}
+```
+
+```java
+public class Test {
+	public static void main(String[] args) {
+		VehicleFactory factory = new CarFactory();
+		IMoveable m = factory.create();
+		m.run();
+	}
+}
+```
+这个项目定义了生产交通工具的工厂！使程序更加灵活。下一个项目介绍抽象工厂！
+
+```java
+public class Car {
+	public void run() {
+		System.out.println("冒着烟奔跑中.....");
+	}
+}
+```
+
+```java
+public class Apple {
+	public void printName() {
+		System.out.println("sweet apple...");	
+	}
+}
+```
+```java
+public class AK47 {
+	public void shoot() {
+		System.out.println("哒哒哒...");
+	}
+}
+```
+```java
+public class Test {
+	public static void main(String[] args) {
+		new Car().run();
+		new AK47().shoot();
+		new Apple().printName();
+	}
+}
+```
+
+一个人控制着交通工具，武器，食品，现在的问题是如果一个人想控制一系列的产品该怎么办？
+
+
+```java
+public class DefaultFactory {
+	public Apple createApple() {
+		return new Apple();
+	}
+	public Car createCar() {
+		return new Car();
+	}
+	public AK47 createAK47() {
+		return new AK47();
+	}
+}
+```
+Apple,Car,AK47同上面的例子
+
+```java
+public class Broom {
+
+}
+
+public class MagicStick {
+
+}
+
+public class MushRoom {
+
+}
+```
+```java
+public class MagicFactory {
+	public Broom createBroom() {
+		return new Broom();
+	}
+	public MagicStick createMagicStick() {
+		return new MagicStick();
+	}
+	public MushRoom createMushRoom() {
+		return new MushRoom();
+	}
+}
+```
+
+```java
+public class Test {
+	public static void main(String[] args) {
+		//DefaultFactory f = new DefaultFactory();
+		//
+		@SuppressWarnings("unused")
+		MagicFactory f = new MagicFactory();
+/*		
+		f.createApple().printName();
+		f.createAK47().shoot();
+		f.createCar().run();*/
+	}
+}
+```
+在这里换工厂的时候具体的方法都要换，不方便，见下一项目。
+
+```java
+public abstract class Food {
+	public abstract void printName();
+}
+
+public abstract class Vehicle {
+	public abstract void run();
+}
+
+public abstract class Weapon {
+	public abstract void shoot();
+}
+```
+
+```java
+public class Apple extends Food {
+	@Override
+	public void printName() {
+		System.out.println("sweet apple...");	
+	}
+}
+```
+
+```java
+public class Car extends Vehicle {
+	@Override
+	public void run() {
+		System.out.println("冒着烟奔跑中.....");
+	}
+}
+```
+
+```java
+public class AK47 extends Weapon {
+	@Override
+	public void shoot() {
+		System.out.println("哒哒哒...");
+	}
+}
+```
+
+```java
+public abstract class AbstractFactory {
+	public abstract Vehicle createVehicle();
+	public abstract Weapon createWeapon();
+	public abstract Food createFood();
+}
+```
+
+```java
+public class MagicFactory extends AbstractFactory {
+
+	@Override
+	public Food createFood() {
+		return new MushRoom();
+	}
+
+	@Override
+	public Vehicle createVehicle() {
+		return new Broom();
+	}
+
+	@Override
+	public Weapon createWeapon() {
+		return new MagicStick();
+	}
+	
+}
+```
+
+```java
+public class Test {
+	public static void main(String[] args) {
+		AbstractFactory factory = new MagicFactory();
+		factory.createFood().printName();
+		factory.createVehicle().run();
+		factory.createWeapon().shoot();
+	}
+}
+```
+
+抽象工厂是生产一系列产品，如果想替换一系列产品的时候，或者在这一系列产品进行扩展，
+想产生新系列产品或者在一些列产品进行扩展用抽象工厂。
+
+普通的工厂在产生产品系列的时候会很麻烦，会产生工厂泛滥
+抽象工厂在产生新产品品种的时候要改动的地方太多
+
+有没有避免普通工厂和抽象工厂两者的弊端呢，见下一个项目
+没有特别好的解决方案，Spring提供了一种比较好的解决方案
+
+```java
+public interface BeanFactory {
+	void getBean(String id);
+}
+```
+
+```properties
+VehicleType=com.spring.factory.Car
+```
+
+```java
+public class Test {
+	
+	public static void main(String[] args) {
+		Properties properties = new Properties();
+		try {
+			properties.load(Test.class.getClassLoader().getResourceAsStream("com/spring/factory/spring.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String vehicleType = properties.getProperty("VehicleType");
+		System.out.println(vehicleType);
+		try {
+			//反射机制
+			Object object = Class.forName(vehicleType).newInstance();
+			IMoveable m = (IMoveable)object;
+			m.run();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+}
+```
+模拟了Spring的bean工厂。可以通过配置文件配置要实例化哪个类！
+
+下面就来模拟一下Spring的IOC功能
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+  <bean id="car" class="com.spring.factory.Car">
+  </bean>
+</beans>
+```
+
+```java
+
+public interface BeanFactory {
+	Object getBean(String id);
+}
+```
+
+```java
+public interface IMoveable {
+	void run();
+}
+```
+```java
+public class Car implements IMoveable {
+
+	public void run() {
+		System.out.println("雪佛兰嘀嘀嘀....");
+	}
+
+}
+```
+
+```java
+public class ClassPathXmlApplicationContext implements BeanFactory {
+	
+	private Map<String,Object> container = new HashMap<String, Object>();
+
+	public ClassPathXmlApplicationContext(String fileName) throws Exception {
+		//此处使用JDOM解析XML文件
+		SAXBuilder sb = new SAXBuilder();
+		Document doc = sb.build(this.getClass().getClassLoader()
+				.getResourceAsStream(fileName));
+		Element root = doc.getRootElement();
+		List<?> list = XPath.selectNodes(root, "/beans/bean");
+		System.out.println(list.size());
+		for(int i=0;i<list.size();i++) {
+			Element bean = (Element) list.get(i);
+			String id = bean.getAttributeValue("id");
+			String clazz = bean.getAttributeValue("class");
+			System.out.println("id = " + id + " : " + "class = " + clazz);
+			Object object = Class.forName(clazz).newInstance();
+			container.put(id, object);
+		}
+	}
+
+	public Object getBean(String id) {
+		return container.get(id);
+	}
+
+}
+```
+
+```java
+public class Test {
+	public static void main(String[] args) throws Exception {
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("com/" +
+				"spring/factory/applicationContext.xml");
+		Object object = beanFactory.getBean("car");
+		IMoveable m = (IMoveable) object;
+		m.run();
+	}
+}
+```
+以后就是马士兵老师讲解工厂模式的例子，感谢马士兵老师。
 ### 2.3. 单例模式
 这里暂时没有考虑多线程的情况，后面会补充进来
 ```java
